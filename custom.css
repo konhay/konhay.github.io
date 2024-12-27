@@ -1,0 +1,46 @@
+/*<style> included when in markdown*/
+    .table
+    {
+        width:auto;
+        display:table;
+        margin-left:auto;
+        margin-right:auto;
+        font-size:14px;
+    }
+    .title
+    {
+        font-size:14px;
+        text-align: center;
+        line-height:0.1;
+        margin-top: 40px
+    }
+    .title2
+    {
+        font-size:14px;
+        text-align: center;
+        line-height:0.1;
+        margin-top: 20px
+    }
+    .ititle
+    {
+        font-size:14px;
+        text-align: center;
+        line-height:0.1;
+        margin-bottom: 40px
+    }
+    .comment
+    {   
+        text-align: center;
+        font-size:14px;
+        color:grey;
+        line-height:1.0;
+        /*margin-bottom: 50px;*/
+    }
+    .upcomment
+    {
+        font-size:14px;
+        color:grey;
+        line-height:1;
+        margin-top: 10px;
+    }
+/*</style>*/
