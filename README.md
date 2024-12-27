@@ -1,1 +1,0 @@
-# konhay.github.io
