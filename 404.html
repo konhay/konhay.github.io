@@ -3,41 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="VuePress 2.0.0-rc.19" />
+    <meta name="generator" content="VuePress 2.0.0-rc.24" />
     <style>
       :root {
-        --vp-c-bg: #fff;
+        --c-bg: #fff;
       }
-
-      [data-theme='dark'] {
-        --vp-c-bg: #1b1b1f;
+      html.dark {
+        --c-bg: #22272e;
       }
-
       html,
       body {
-        background-color: var(--vp-c-bg);
+        background-color: var(--c-bg);
       }
     </style>
     <script>
       const userMode = localStorage.getItem('vuepress-color-scheme')
       const systemDarkMode =
-        'matchMedia' in window
-          ? window.matchMedia('(prefers-color-scheme: dark)').matches
-          : false
-
-      if (userMode === 'light') {
-        document.documentElement.dataset.theme = 'light'
-      } else if (userMode === 'dark' || systemDarkMode) {
-        document.documentElement.dataset.theme = 'dark'
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+        document.documentElement.classList.toggle('dark', true)
       }
     </script>
     <link rel="icon" href="/logo.jpg"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>Press</title><meta name="description" content="A VuePress Supported Site">
-    <link rel="preload" href="/assets/style-ixSQkNiR.css" as="style"><link rel="stylesheet" href="/assets/style-ixSQkNiR.css">
-    <link rel="modulepreload" href="/assets/app-BO0V3YtK.js"><link rel="modulepreload" href="/assets/404.html-CxuR4kUg.js">
-    <link rel="prefetch" href="/assets/index.html-BAw-gNyb.js" as="script"><link rel="prefetch" href="/assets/bond.html-CxdnWUD3.js" as="script"><link rel="prefetch" href="/assets/factoring.html-CuqCFT9G.js" as="script"><link rel="prefetch" href="/assets/pnl-attribution.bk.html-UI4TMMVN.js" as="script"><link rel="prefetch" href="/assets/pnl-attribution.html-BOPpUfBG.js" as="script"><link rel="prefetch" href="/assets/mnt.html-BGZ1YQtH.js" as="script"><link rel="prefetch" href="/assets/remote.html-DHLO2oMe.js" as="script"><link rel="prefetch" href="/assets/settings.html-Euq6KeEA.js" as="script"><link rel="prefetch" href="/assets/vmcopy.html-BJzXSCPf.js" as="script"><link rel="prefetch" href="/assets/asset-valuation.html-BKT51AeY.js" as="script"><link rel="prefetch" href="/assets/business-overview.bk.html-Bgjtl6HJ.js" as="script"><link rel="prefetch" href="/assets/business-overview.bk2.html-_HjRVFva.js" as="script"><link rel="prefetch" href="/assets/business-overview.html-BktQbFA7.js" as="script"><link rel="prefetch" href="/assets/consumption-da.html-BVBE9ZMw.js" as="script"><link rel="prefetch" href="/assets/customer-clustering.html-BXKltk-F.js" as="script"><link rel="prefetch" href="/assets/overdue-forecast.html-8ViuzFiv.js" as="script"><link rel="prefetch" href="/assets/risk-impairment.html-Dpv2oJ7b.js" as="script"><link rel="prefetch" href="/assets/stress-test.html-D1F85udT.js" as="script"><link rel="prefetch" href="/assets/blue-space-x.html-gh0_hSjm.js" as="script">
+    <link rel="preload" href="/assets/style-CZfVcIHt.css" as="style"><link rel="stylesheet" href="/assets/style-CZfVcIHt.css">
+    <link rel="modulepreload" href="/assets/app-DDNwHVpn.js"><link rel="modulepreload" href="/assets/404.html-DU5AeUQ7.js">
+    <link rel="prefetch" href="/assets/README-mail.html-CSaGO8KM.js" as="script"><link rel="prefetch" href="/assets/index.html-CMCeemAe.js" as="script"><link rel="prefetch" href="/assets/bond.html-D4NDAEhq.js" as="script"><link rel="prefetch" href="/assets/eap.html-DW5QlEPz.js" as="script"><link rel="prefetch" href="/assets/factoring.html-J1JFUY1H.js" as="script"><link rel="prefetch" href="/assets/pnl-attribution.bk.html-DD1V4daj.js" as="script"><link rel="prefetch" href="/assets/pnl-attribution.html-CKjZwoUT.js" as="script"><link rel="prefetch" href="/assets/asset-valuation.html-sfLgTjny.js" as="script"><link rel="prefetch" href="/assets/business-overview.html-CMHFW3o7.js" as="script"><link rel="prefetch" href="/assets/consumption-da.html-PMzVy5aa.js" as="script"><link rel="prefetch" href="/assets/customer-clustering.html-B5N8jQUN.js" as="script"><link rel="prefetch" href="/assets/overdue-forecast.html-sKeNvxea.js" as="script"><link rel="prefetch" href="/assets/risk-impairment.html-BUIwDdKP.js" as="script"><link rel="prefetch" href="/assets/stress-test.html-ss43oFCE.js" as="script"><link rel="prefetch" href="/assets/mnt.html-DdBW0EX-.js" as="script"><link rel="prefetch" href="/assets/remote.html-yWeA1UAO.js" as="script"><link rel="prefetch" href="/assets/settings.html-CNKJWBpO.js" as="script"><link rel="prefetch" href="/assets/vmcopy.html-BtxFxM_b.js" as="script"><link rel="prefetch" href="/assets/blue-space-x.html-DbGw3YDv.js" as="script">
   </head>
   <body>
-    <div id="app"><!--[--><div class="vp-theme-container" vp-container data-v-f49edb1d><main class="page" data-v-f49edb1d><div class="theme-default-content" vp-content data-v-f49edb1d><h1 data-v-f49edb1d>404</h1><blockquote data-v-f49edb1d>How did we get here?</blockquote><a class="route-link" href="/" data-v-f49edb1d>Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
-    <script type="module" src="/assets/app-BO0V3YtK.js" defer></script>
+    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>That&#39;s a Four-Oh-Four.</blockquote><a class="route-link" href="/">Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/assets/app-DDNwHVpn.js" defer></script>
   </body>
 </html>
