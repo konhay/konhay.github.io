@@ -1,1 +1,0 @@
-Static press pages.
