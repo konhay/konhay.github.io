@@ -1,0 +1,39 @@
+import{_ as n,c as a,e,o as l}from"./app-BSSwj498.js";const i={};function d(c,s){return l(),a("div",null,[...s[0]||(s[0]=[e(`<h1 id="centos7挂载物理分区" tabindex="-1"><a class="header-anchor" href="#centos7挂载物理分区"><span>Centos7挂载物理分区</span></a></h1><h4 id="在host磁盘管理中添加分区" tabindex="-1"><a class="header-anchor" href="#在host磁盘管理中添加分区"><span>在host磁盘管理中添加分区</span></a></h4><p>（WD 3TB为GPT分区方式，NTFS文件系统）</p><h4 id="给vm添加物理磁盘-使用单个分区" tabindex="-1"><a class="header-anchor" href="#给vm添加物理磁盘-使用单个分区"><span>给vm添加物理磁盘，使用单个分区</span></a></h4><p>（该分区为独占分区，一旦指定，vm和host不能同时访问）</p><p><em>- PhysicalDrive0 --&gt; SSD 128G</em></p><p><em>- PhysicalDrive1 --&gt; WD 1TB</em></p><p><em>- PhysicalDrive2 --&gt; WD 3TB</em></p><p><em>- PhysicalDrive3 --&gt; My Passport 1TB</em></p><h4 id="vm重启后发现disk信息" tabindex="-1"><a class="header-anchor" href="#vm重启后发现disk信息"><span>vm重启后发现disk信息</span></a></h4><div class="language-SHELL line-numbers-mode" data-highlighter="prismjs" data-ext="SHELL"><pre><code class="language-SHELL"><span class="line">[root@oracle1 ~]# lsblk</span>
+<span class="line">NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT</span>
+<span class="line">sda               8:0    0    20G  0 disk</span>
+<span class="line">├─sda1            8:1    0   500M  0 part /boot</span>
+<span class="line">└─sda2            8:2    0  19.5G  0 part</span>
+<span class="line">  ├─centos-root 253:0    0  17.5G  0 lvm  /</span>
+<span class="line">  └─centos-swap 253:1    0     2G  0 lvm  [SWAP]</span>
+<span class="line">sdb               8:16   0   2.7T  0 disk</span>
+<span class="line">├─sdb1            8:17   0   128M  0 part</span>
+<span class="line">└─sdb2            8:18   0 488.3G  0 part</span>
+<span class="line">sr0              11:0    1  1024M  0 rom </span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="centos-7下用ntfs-3g挂载" tabindex="-1"><a class="header-anchor" href="#centos-7下用ntfs-3g挂载"><span>centos 7下用ntfs-3g挂载</span></a></h4><p>（http://www.ha97.com/2832.html）</p><div class="language-SHELL line-numbers-mode" data-highlighter="prismjs" data-ext="SHELL"><pre><code class="language-SHELL"><span class="line">[root@oracle1 ~]# yum install *ntfs*</span>
+<span class="line">[root@oracle1 ~]# rpm -a -q |grep ntfs</span>
+<span class="line">ntfs-3g-devel-2016.2.22-3.el7.x86_64</span>
+<span class="line">ntfs-3g-2016.2.22-3.el7.x86_64</span>
+<span class="line">ntfsprogs-2016.2.22-3.el7.x86_64</span>
+<span class="line">[root@oracle1 ~]# mkdir /mnt/F</span>
+<span class="line">[root@oracle1 ~]#  chown -R oracle:oinstall /mnt/F</span>
+<span class="line">[root@oracle1 ~]#  chown -R oracle:dba /mnt/F</span>
+<span class="line">[root@oracle1 ~]# cd /mnt</span>
+<span class="line">[root@oracle1 mnt]# ls</span>
+<span class="line">cdrom  F  hgfs</span>
+<span class="line">[root@oracle1 mnt]# mount -t ntfs-3g /dev/sdb2 /mnt/F  #挂载（临时，重启后失效）</span>
+<span class="line">[root@oracle1 mnt]# df -h</span>
+<span class="line">Filesystem               Size  Used Avail Use% Mounted on</span>
+<span class="line">/dev/mapper/centos-root   18G  9.8G  7.7G  56% /</span>
+<span class="line">devtmpfs                 903M     0  903M   0% /dev</span>
+<span class="line">tmpfs                    912M     0  912M   0% /dev/shm</span>
+<span class="line">tmpfs                    912M  8.6M  904M   1% /run</span>
+<span class="line">tmpfs                    912M     0  912M   0% /sys/fs/cgroup</span>
+<span class="line">/dev/sda1                497M  152M  345M  31% /boot</span>
+<span class="line">tmpfs                    183M     0  183M   0% /run/user/0</span>
+<span class="line">/dev/sdb2                489G  101M  489G   1% /mnt/F</span>
+<span class="line">[root@oracle1 mnt]# umount /dev/sdb2  #卸载</span>
+<span class="line">[root@oracle1 mnt]# vim /etc/fstab  #开机自动挂载</span>
+<span class="line">[root@oracle1 mnt]# cat /etc/fstab</span>
+<span class="line"># physical driver</span>
+<span class="line">/dev/sdb2 /mnt/F ntfs-3g defaults 0 0  #rw</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,14)])])}const p=n(i,[["render",d]]),t=JSON.parse('{"path":"/centos/mnt.html","title":"Centos7挂载物理分区","lang":"en-US","frontmatter":{"outline":"deep"},"git":{},"filePathRelative":"centos/mnt.md"}');export{p as comp,t as data};
